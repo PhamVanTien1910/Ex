@@ -1,0 +1,39 @@
+name: Build and deploy
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    types: [opened, synchronize]
+    branches:
+      - develop
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "14.x"
+
+      - name: Install dependencies
+        run: cd express-example && npm install
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+
+    steps:
+  
+
+      - name: Restart api server
+        run:  cd express-example && pm2 restart demo
+
+      - name: Notify success deployment
+        run: echo "Deployment complete"
+
+
