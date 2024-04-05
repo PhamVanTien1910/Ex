@@ -21,7 +21,7 @@ jobs:
           node-version: "14.x"
 
       - name: Install dependencies
-        run: cd express-example && npm install
+        run:  npm install
 
   deploy:
     needs: build
@@ -31,7 +31,7 @@ jobs:
   
 
       - name: Restart api server
-        run:  cd express-example && pm2 restart demo
+        run:   pm2 restart demo
 
       - name: Notify success deployment
         run: echo "Deployment complete"
