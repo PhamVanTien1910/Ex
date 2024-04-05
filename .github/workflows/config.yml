@@ -30,8 +30,8 @@ jobs:
     steps:
   
 
-      - name: Restart api server
-        run:  cd express-example && pm2 restart demo
+      # - name: Restart api server
+      #   run:  cd express-example && pm2 restart demo
 
       - name: Notify success deployment
         run: echo "Deployment complete"
